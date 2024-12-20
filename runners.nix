@@ -62,6 +62,7 @@
     isSystemUser = true;
     group = "github-runner";
     home = "/var/lib/github-runner";
+    shell = pkgs.bash;
     createHome = true;
   };
     # Setup Runner Permissions
