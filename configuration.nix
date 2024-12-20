@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      /etc/runners/runners.nix
     ];
 
   # Bootloader.
@@ -15,7 +16,7 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "nettools"; # Define your hostname.
+  networking.hostName = "gncbot"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -57,17 +58,6 @@
     packages = with pkgs; [];
   };
 
-  services = {
-    github-runners = {
-      runner = {
-        enable = true;
-        name = "runner";
-        tokenFile = "/home/cjenks/github_token";
-        user = "cjenks";
-        url = "https://github.com/tylercote/gnc-telegram-bot";
-      };
-    };
-  };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 

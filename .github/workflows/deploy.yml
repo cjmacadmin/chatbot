@@ -1,0 +1,21 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Copy configuration
+        run: |
+          sudo /run/current-system/sw/bin/cp -r configuration.nix /etc/nixos/configuration.nix
+          
+      - name: Rebuild system
+        run: |
+          sudo /run/current-system/sw/bin/nixos-rebuild switch
