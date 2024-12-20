@@ -35,5 +35,11 @@ in
         ];
       }
     ];
+    # Add container-friendly sudo configuration
+    security.sudo.extraConfig = ''
+      Defaults!ALL setenv
+      Defaults!/run/current-system/sw/bin/cp env_keep+=NO_NEW_PRIVS
+      Defaults!/run/current-system/sw/bin/nixos-rebuild env_keep+=NO_NEW_PRIVS
+    '';
   };
 }
