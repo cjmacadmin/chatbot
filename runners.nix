@@ -35,7 +35,6 @@
       tokenFile = "/etc/runners/github_token";
       replace = true;
       extraLabels = [ "nixos" "self-hosted" ];
-      
       # Configure the runner environment
       serviceOverrides = {
         User = "github-runner";
@@ -65,22 +64,6 @@
     shell = pkgs.bash;
     createHome = true;
   };
-    # Setup Runner Permissions
-  security.sudo.extraRules = [
-    {
-      users = [ "github-runner" ];
-      commands = [
-        {
-          command = "/run/current-system/sw/bin/nixos-rebuild";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "/run/current-system/sw/bin/cp";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
 
   users.groups.github-runner = {};
 

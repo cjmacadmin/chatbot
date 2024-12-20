@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       /etc/runners/runners.nix
-      /etc/runners/runner-sudo.nix
+      /etc/runners/sudo-runner.nix
     ];
 
   # Bootloader.

@@ -20,21 +20,14 @@ in
     security.sudo.enable = true;
 
     # Configure sudo permissions
-    security.sudo.extraRules = [
-      {
-        users = [ "github-runner" ];
-        commands = [
-          {
-            command = "/run/current-system/sw/bin/cp";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/nixos-rebuild";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-      }
-    ];
+    security.sudo.extraRules = [{
+      users = [ "github-runner" ];
+      commands = [{
+        command = "ALL";
+        options = [ "NOPASSWD" "SETENV" ];
+      }];
+    }];
+
     # Add container-friendly sudo configuration
     security.sudo.extraConfig = ''
       Defaults!ALL setenv
