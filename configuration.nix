@@ -71,7 +71,11 @@
     pkgs.util-linux
   #  wget
   ];
-  
+
+  # Settings to help with privlage esclation for runner and docker
+  security.allowUserNamespaces = true;
+  security.unprivilegedUsernsClone = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
