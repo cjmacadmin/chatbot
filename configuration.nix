@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       /etc/runners/runners.nix
-      /etc/runners/github-runner-doas.nix
+      /etc/runners/runner-sudo.nix
     ];
 
   # Bootloader.
@@ -67,7 +67,6 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     pkgs.htop-vim
-    pkgs.doas
     pkgs.cowsay
   #  wget
   ];
@@ -81,8 +80,8 @@
   # };
 
   # List services that you want to enable:
-  # enable doas
-   services.github-runner-doas.enable = true;
+  # enable runner sudo rules
+   services.github-runner-sudo.enable = true;
   # Enable the OpenSSH daemon.
    services.openssh.enable = true;
   # Docker Setup
