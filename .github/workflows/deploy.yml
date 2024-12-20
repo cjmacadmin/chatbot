@@ -14,8 +14,8 @@ jobs:
       
       - name: Copy configuration
         run: |
-          nsenter -t 1 -m -- /run/wrappers/bin/sudo /run/current-system/sw/bin/cp -r configuration.nix /etc/nixos/configuration.nix
+          /run/current-system/sw/bin/nsenter -t 1 -m -- /run/wrappers/bin/sudo /run/current-system/sw/bin/cp -r configuration.nix /etc/nixos/configuration.nix
           
       - name: Rebuild system
         run: |
-          nsenter -t 1 -m -- /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch
+          /run/current-system/sw/bin/nsenter -t 1 -m -- /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch
