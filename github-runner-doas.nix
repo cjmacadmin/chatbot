@@ -20,6 +20,14 @@ in
     environment.systemPackages = [
       pkgs.doas
     ];
+  
+    security.sudo.enable = true;
+    security.wrappers.doas = {
+      owner = "root";
+      group = "root";
+      source = "${pkgs.doas}/bin/doas";
+      setuid = true;
+    };
 
     # Configure doas permissions
     environment.etc."doas.conf".text = ''
