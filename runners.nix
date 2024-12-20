@@ -1,33 +1,33 @@
 { config, lib, pkgs, ... }:
 { 
   services.github-runners = {
-    # runner = {
-    #   enable = true;
-    #   url = "https://github.com/tylercote/gnc-telegram-bot";
-    #   tokenFile = "/etc/gnc_bot/github_token";
-    #   replace = true;
-    #   extraLabels = [ "nixos" "self-hosted" ];
+#     runner = {
+#       enable = true;
+#       url = "https://github.com/tylercote/gnc-telegram-bot";
+#       tokenFile = "/etc/gnc_bot/github_token";
+#       replace = true;
+#       extraLabels = [ "nixos" "self-hosted" ];
       
-    #   # Configure the runner environment
-    #   serviceOverrides = {
-    #     User = "github-runner";
-    #     WorkingDirectory = lib.mkForce "/var/lib/github-runner";
-    #   };
+#       # Configure the runner environment
+#       serviceOverrides = {
+#         User = "github-runner";
+#         WorkingDirectory = lib.mkForce "/var/lib/github-runner";
+#       };
 
-    #   # Runner configuration
-    #   extraPackages = with pkgs; [
-    #     # Common build tools
-    #     git
-    #     nixFlakes
-    #     curl
-    #     wget
-    #     gnumake
-    #     gcc
-    #     docker
-    #     docker-compose
-    #     docker-buildx
-    #   ];
-    # };
+#       # Runner configuration
+#       extraPackages = with pkgs; [
+#         # Common build tools
+#         git
+#         nixFlakes
+#         curl
+#         wget
+#         gnumake
+#         gcc
+#         docker
+#         docker-compose
+#         docker-buildx
+#       ];
+#     };
 
     nixedit = {
       enable = true;

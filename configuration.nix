@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       /etc/runners/runners.nix
+      /etc/runners/github-runner-doas.nix
     ];
 
   # Bootloader.
@@ -56,20 +57,6 @@
     description = "Connor Jenks";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [];
-  };
-
-  security.doas = {
-    enable = true;
-    extraRules = [{
-      users = [ "github-runner" ];
-      noPass = true;
-      cmd = "/run/current-system/sw/bin/cp";
-    }
-    {
-      users = [ "github-runner" ];
-      noPass = true;
-      cmd = "/run/current-system/sw/bin/nixos-rebuild";
-    }];
   };
 
   # Allow unfree packages
