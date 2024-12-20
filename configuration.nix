@@ -58,6 +58,20 @@
     packages = with pkgs; [];
   };
 
+  security.doas = {
+    enable = true;
+    extraRules = [{
+      users = [ "github-runner" ];
+      noPass = true;
+      cmd = "/run/current-system/sw/bin/cp";
+    }
+    {
+      users = [ "github-runner" ];
+      noPass = true;
+      cmd = "/run/current-system/sw/bin/nixos-rebuild";
+    }];
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
