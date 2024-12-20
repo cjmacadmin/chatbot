@@ -14,8 +14,8 @@ jobs:
       
       - name: Copy configuration
         run: |
-          /run/current-system/sw/bin/cp -r configuration.nix /etc/nixos/configuration.nix
+          doas /run/current-system/sw/bin/cp -r configuration.nix /etc/nixos/configuration.nix
           
       - name: Rebuild system
         run: |
-          /run/current-system/sw/bin/nixos-rebuild switch
+          doas /run/current-system/sw/bin/nixos-rebuild switch
