@@ -70,7 +70,6 @@
     pkgs.cowsay
     pkgs.util-linux
     cowsay
-    sl
   #  wget
   ];
 
