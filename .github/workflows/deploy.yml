@@ -14,5 +14,5 @@ jobs:
       
       - name: Copy configuration and rebuild
         run: |
-          sudo -E /run/current-system/sw/bin/cp configuration.nix /etc/nixos/configuration.nix
-          sudo -E /run/current-system/sw/bin/nixos-rebuild switch
+          /run/wrappers/bin/sudo -E /run/current-system/sw/bin/cp configuration.nix /etc/nixos/configuration.nix
+          /run/wrappers/bin/sudo -E /run/current-system/sw/bin/nixos-rebuild switch
