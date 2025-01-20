@@ -12,10 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Copy configuration
+      - name: Copy configuration and rebuild
         run: |
-          /run/wrappers/bin/sudo /run/current-system/sw/bin/cp -r configuration.nix /etc/nixos/configuration.nix
-          
-      - name: Rebuild system
-        run: |
-          /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch
+          sudo -E /run/current-system/sw/bin/cp configuration.nix /etc/nixos/configuration.nix
+          sudo -E /run/current-system/sw/bin/nixos-rebuild switch
