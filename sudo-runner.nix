@@ -31,10 +31,10 @@ in
     # Add container-friendly sudo configuration
     security.sudo.extraConfig = ''
       Defaults!ALL setenv
-      Defaults!ALL env_reset
-      Defaults!/run/current-system/sw/bin/cp env_reset
-      Defaults!/run/current-system/sw/bin/nixos-rebuild env_reset
       Defaults!ALL env_keep+="PATH"
+      Defaults!/run/current-system/sw/bin/* env_keep+="PATH"
+      Defaults!ALL !requiretty
+      Defaults!ALL !pam_session
     '';
   };
 }

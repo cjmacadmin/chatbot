@@ -12,6 +12,10 @@
       serviceOverrides = {
         User = "github-runner";
         WorkingDirectory = lib.mkForce "/var/lib/github-runner";
+        NoNewPrivileges = "no";
+        SystemCallFilter = "~@reboot";
+        ProtectSystem = "no";
+        ProtectHome = "no";
       };
 
       # Runner configuration
@@ -39,6 +43,10 @@
       serviceOverrides = {
         User = "github-runner";
         WorkingDirectory = lib.mkForce "/var/lib/github-runner";
+        NoNewPrivileges = "no";
+        SystemCallFilter = "~@reboot";
+        ProtectSystem = "no";
+        ProtectHome = "no";
       };
 
       # Runner configuration
