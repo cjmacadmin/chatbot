@@ -69,6 +69,7 @@
     pkgs.htop-vim
     pkgs.cowsay
     pkgs.util-linux
+    cowsay
   #  wget
   ];
 
@@ -89,8 +90,34 @@
    services.github-runner-sudo.enable = true;
   # Enable the OpenSSH daemon.
    services.openssh.enable = true;
-  # Docker Setup
-   virtualisation.docker.enable = true;
+  # GNC Bot Setup
+  virtualisation.docker.enable = true;
+  users.users.github-runner.extraGroups = [ "docker" ];
+
+  systemd.services.telegram-bot = {
+    description = "Telegram Bot Container";
+    after = [ "docker.service" "docker.socket" ];
+    requires = [ "docker.service" ];
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      User = "github-runner";
+      ExecStartPre = [
+        "-${pkgs.docker}/bin/docker stop telegram-bot"
+        "-${pkgs.docker}/bin/docker rm telegram-bot"
+      ];
+      ExecStart = ''
+        ${pkgs.docker}/bin/docker run \
+          --name telegram-bot \
+          --env-file /etc/gnc_bot/.env \
+          -p 6969:6969 \
+          telegram-bot:latest
+      '';
+      ExecStop = "${pkgs.docker}/bin/docker stop telegram-bot";
+      Restart = "always";
+      RestartSec = "10s";
+    };
+  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
